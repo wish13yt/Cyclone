@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vortex Launcher</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="titlebar">
+    <div id="titlebar-left">
+      <span id="logo">VORTEX</span>
+      <span id="subtitle">Launcher</span>
+    </div>
+    <div id="titlebar-center">
+      <div id="nav-buttons">
+        <button class="nav-btn" id="btn-back" disabled>&#9664;</button>
+        <button class="nav-btn" id="btn-forward" disabled>&#9654;</button>
+        <button class="nav-btn" id="btn-refresh">&#8635;</button>
+      </div>
+      <input type="text" id="url-bar" value="https://playvortex.io" readonly>
+    </div>
+    <div id="titlebar-right">
+      <button class="tb-btn" id="btn-login-toggle">🔑 Login</button>
+      <button class="tb-btn" id="btn-launch-toggle">🎮 Launch</button>
+    </div>
+  </div>
+
+  <div id="main-container">
+    <webview id="webview" src="https://playvortex.io" allowpopups></webview>
+
+    <div id="login-panel" class="slide-panel hidden">
+      <div class="panel-header">
+        <span>🔑 Account Login</span>
+        <button class="panel-close" id="login-close">&times;</button>
+      </div>
+      <div class="panel-body">
+        <div class="form-group">
+          <label>Username</label>
+          <input type="text" id="login-username" placeholder="Enter username">
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" id="login-password" placeholder="Enter password">
+        </div>
+        <button class="btn-primary" id="btn-login-submit">Sign In</button>
+        <div class="divider">or select saved account</div>
+        <select id="saved-accounts" size="6"></select>
+        <button class="btn-secondary" id="btn-fill-creds">Fill Selected</button>
+      </div>
+    </div>
+
+    <div id="launch-panel" class="slide-panel hidden">
+      <div class="panel-header">
+        <span>🎮 Game Launcher</span>
+        <button class="panel-close" id="launch-close">&times;</button>
+      </div>
+      <div class="panel-body">
+        <div class="launch-mode">
+          <label class="mode-card" id="mode-wine">
+            <input type="radio" name="launch-mode" value="wine" checked>
+            <div class="mode-content">
+              <span class="mode-icon">🍷</span>
+              <span class="mode-title">Vortex.exe (Wine)</span>
+              <span class="mode-desc">Run the Windows build via Wine</span>
+            </div>
+          </label>
+          <label class="mode-card" id="mode-native">
+            <input type="radio" name="launch-mode" value="native">
+            <div class="mode-content">
+              <span class="mode-icon">🐧</span>
+              <span class="mode-title">Vortex Studio (Native)</span>
+              <span class="mode-desc">Run the native Linux Rust build</span>
+            </div>
+          </label>
+          <label class="mode-card" id="mode-receiver">
+            <input type="radio" name="launch-mode" value="receiver">
+            <div class="mode-content">
+              <span class="mode-icon">📡</span>
+              <span class="mode-title">receiver.exe (Daemon)</span>
+              <span class="mode-desc">Launch the API companion daemon</span>
+            </div>
+          </label>
+        </div>
+        <div id="game-status">Not running</div>
+        <button class="btn-primary" id="btn-launch-game">▶ Launch Game</button>
+        <button class="btn-danger hidden" id="btn-kill-game">■ Kill Game</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="statusbar">
+    <span id="status-text">Ready</span>
+    <span id="status-right"></span>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
