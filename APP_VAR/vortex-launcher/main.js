@@ -6,9 +6,6 @@ const { spawn } = require('child_process');
 const VORTEX_DIR = path.resolve(__dirname, '..', '..');
 const CREDENTIALS_FILE = path.join(VORTEX_DIR, 'config', 'usernamesandpasswords');
 const VORTEX_EXE = path.join(VORTEX_DIR, 'bin', 'Vortex.exe');
-const STUDIO_DIR = path.join(VORTEX_DIR, 'studio_ide_project');
-const STUDIO_BIN = path.join(STUDIO_DIR, 'target', 'release', 'vortex-studio');
-const STUDIO_SH = path.join(VORTEX_DIR, 'bin', 'vortex-studio.sh');
 const RECEIVER_EXE = path.join(VORTEX_DIR, 'bin', 'receiver.exe');
 
 let mainWindow = null;
@@ -131,18 +128,6 @@ ipcMain.handle('launch-game', (_, mode) => {
     return { success: ok, reason: ok ? null : 'Failed to spawn wine' };
   }
 
-  if (mode === 'native') {
-    if (checkExists(STUDIO_BIN)) {
-      const ok = launchExe(STUDIO_BIN, [], { cwd: STUDIO_DIR });
-      return { success: ok, reason: ok ? null : 'Failed to spawn vortex-studio' };
-    }
-    if (checkExists(STUDIO_SH)) {
-      const ok = launchExe('bash', [STUDIO_SH], { cwd: STUDIO_DIR });
-      return { success: ok, reason: ok ? null : 'Failed to spawn vortex-studio.sh' };
-    }
-    return { success: false, reason: 'No native build found (checked binary and .sh)' };
-  }
-
   if (mode === 'receiver') {
     if (!checkExists(RECEIVER_EXE)) {
       return { success: false, reason: `receiver.exe not found at ${RECEIVER_EXE}` };
@@ -181,7 +166,6 @@ ipcMain.handle('get-paths', () => ({
   vortexDir: VORTEX_DIR,
   credsFile: CREDENTIALS_FILE,
   vortexExe: VORTEX_EXE,
-  studioBin: STUDIO_BIN,
   receiverExe: RECEIVER_EXE,
   appSearchDir: path.join(VORTEX_DIR, 'appsearch'),
 }));

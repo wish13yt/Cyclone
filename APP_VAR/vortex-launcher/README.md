@@ -28,9 +28,8 @@ Or launch from your application menu ("Vortex Launcher").
 
 - **Webview** — embedded `playvortex.io` with back/forward/refresh navigation and editable URL bar
 - **Account management** — reads saved credentials from `config/usernamesandpasswords`, auto-logs out before switching users
-- **Game launcher** — three modes:
+- **Game launcher** — two modes:
   - `wine` — Vortex.exe via Wine
-  - `native` — vortex-studio Linux binary
   - `receiver` — receiver.exe API daemon (Wine)
 - **Process lifecycle** — start/kill game processes, exit detection
 
