@@ -1,8 +1,8 @@
 #!/bin/bash
 set -euo pipefail
-# this script is owned by Your Average Mentally Ill Loser, have problems? Dm me!
+# Forked from a script by Your Average Mentally Ill Loser
 REPO_URL="https://github.com/HansKristian-Work/vkd3d-proton"
-VORTEX_DL="https://vortex.towerstats.com/download/windows"
+VORTEX_DL="https://playvortex.io/download/windows"
 
 die() { echo "ERROR: $*" >&2; exit 1; }
 info() { echo "==> $*"; }
@@ -449,7 +449,7 @@ echo ""
 echo "Desktop shortcut installed:"
 echo "  - Vortex Launcher  (webview + game launch)"
 echo ""
-echo "Next: restart your browser, visit vortex.towerstats.com,"
+echo "Next: restart your browser, visit playvortex.io,"
 echo "and click Play (accept the vortex:// prompt)."
 echo "If your browser doesn't prompt, paste this in the address bar:"
 echo "  vortex://"
